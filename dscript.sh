@@ -46,10 +46,13 @@ function install_dev_tools(){
 }
 
 while true ; do	
-	echo "1. Install hacking tools 		2. Install debian tools"
-	echo "3. Update/Upgrade 			4. Install Essentials"
-	echo "5. Install Google Chrome 		6. Install programiming tools"
-	echo "7. Install themes 			X. Exit"
+	clear
+	echo ".:: Script to Upgrade Ubuntu 18.0N.0N into a DSM ::."
+	echo "1. Update/upgrade 			2. Install Essentials"
+	echo "3. Install Chrome 			4. Install Dev Tools"
+	echo "5. Install IDEs 			6. Install DS Tools"
+	echo "7. Install DIP Tools 			X. Exit"
 	echo -n "[x]> "
+	read -r OPTION
 done
 
