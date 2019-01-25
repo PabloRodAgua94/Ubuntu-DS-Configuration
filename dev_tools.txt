@@ -1,0 +1,8 @@
+shellcheck
+mcedit
+mono-mcs
+gpp
+codeblocks
+build-essential
+octave
+oracle-java8-installer

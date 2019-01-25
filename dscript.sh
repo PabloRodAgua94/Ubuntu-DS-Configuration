@@ -11,15 +11,15 @@
 
 function update(){
 	echo ".:: UPDATING & UPGRADING ::."
-	apt clean
-	apt update -y
-	apt upgrade -y
-	apt dist-upgrade -y
+	sudo apt clean
+	sudo apt update -y
+	sudo apt upgrade -y
+	sudo apt dist-upgrade -y
 }
 
 function install_essentials(){
 	echo ".:: INSTALING ESSENTIALS ::."
-	apt install gnome-tweak-tool ubuntu-restricted-extras libavcodec-extra bleachbit plank inkscape gimp gimp-data gimp-plugin-registry gimp-data-extras dia  unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract gcp vlc -y
+	cat essentials.txt | xargs sudo apt install
 }
 
 function install_chrome() {
@@ -29,34 +29,27 @@ function install_chrome() {
 		echo "64 bit Detected" 
 		echo "Installing Google Chrome" 
 		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
-		dpkg -i google-chrome-stable_current_amd64.deb 
+		sudo dpkg -i google-chrome-stable_current_amd64.deb 
 		rm -f google-chrome-stable_current_amd64.deb
 	else
 		echo "32 bit Detected"
 		echo "Not supported any more! :(" 
 	fi
-	apt update
+	sudo apt update
 } # install_chrome()
 
 
 function install_dev_tools() {
 	echo ".:: INSTALLING DEV TOOLS ::."
-	add-apt-repository ppa:webupd8team/java
-	apt update
-	apt install shellcheck mcedit mono-mcs gpp codeblocks build-essential octave
-	apt install oracle-java8-installer
-	update()
+	add-sudo apt-repository ppa:webupd8team/java
+	sudo apt update
+	cat dev_tools.txt | xargs sudo apt install
 }
 
 function install_cvtools() {
 	echo ".:: INSTALLING CV Tools ::."
-	apt install build-essential cmake unzip pkg-config
-	apt install libjpeg-dev libpng-dev libtiff-dev
-	apt install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
-	apt install libxvidcore-dev libx264-dev
-	apt install libgtk-3-dev
-	apt install libatlas-base-dev gfortran
-	apt install python3-dev
+	sudo apt update
+	cat cv_tools.txt | xargs sudo apt install
 }
 
 while true ; do	
@@ -64,8 +57,8 @@ while true ; do
 	echo ".:: Script to Upgrade Ubuntu 18.0N.0N into a DSM ::."
 	echo "1. Update/upgrade 			2. Install Essentials"
 	echo "3. Install Chrome 			4. Install Dev Tools"
-	echo "5. Install CV Tools 			6. Install DS Tools"
-	echo "7. Install DIP Tools 			X. Exit"
+	echo "5. Install CV Tools 			6. Install Conda Envs"
+	echo "7. ----- 			X. Exit"
 	echo -n "[x]> "
 	read -r OPTION
 done
